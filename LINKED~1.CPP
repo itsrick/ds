@@ -1,3 +1,4 @@
+//Create | Display | Search
 #include <stdio.h>
 #include <iostream.h>
 #include <conio.h>
@@ -9,14 +10,27 @@ struct node
     int data;
 };
 
-void print(node *head)
+void print(node* head)
 {
     if (head == NULL)
     {
-        return;
+	return;
     }
     print(head->next);
     cout << head->data;
+}
+void search(node**headref,int data){
+    node* current=*headref;
+    while(current!=NULL){
+	if(current->data==data){
+	    cout<<"\nElement found\n";
+	    return;
+	}else{
+	    current=current->next;
+	}
+    }
+    cout<<"Element not found";
+
 }
 void push(node **headref, char newdata)
 {
@@ -33,7 +47,7 @@ void main()
     push(&head, 3);
     push(&head, 2);
     push(&head, 1);
-
     print(head);
+    search(&head,3);
     getch();
 }
