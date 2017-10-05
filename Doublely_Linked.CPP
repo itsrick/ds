@@ -1,4 +1,4 @@
-// Create | Display
+// Create | Display | Sort
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream.h>
@@ -32,6 +32,37 @@ void printList(Node *node)
     }
 }
 
+void sort(Node *x)
+{
+    Node *temp = x;
+    Node *so = x;
+    Node *a = x;
+    int min, c;
+    min = temp->data;
+    while (temp != NULL)
+    {
+	if (temp->data < min)
+	{
+	    min = temp->data;
+	}
+	temp = temp->next;
+    }
+    while (so != NULL)
+    {
+	if (so->data == min)
+	{
+	    c = so->data;
+	    so->data = a->data;
+	    a->data = c;
+	}
+	so = so->next;
+    }
+    x = x->next;
+    if (x != NULL)
+    {
+	sort(x);
+    }
+}
 
 int main()
 {
@@ -43,8 +74,8 @@ int main()
     push(&head,8);
     push(&head,9);
     printList(head);
-
-
+    sort(head);
+    printList(head);
     getch();
     return 0;
 }
