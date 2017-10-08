@@ -5,7 +5,7 @@
 void hanoi(char, char, char, int);
 
 void main()
-{
+{   clrscr();
     int num;
     cin >> num;
     hanoi('A', 'B', 'C', num);
@@ -18,8 +18,8 @@ void hanoi(char from, char to, char other, int n)
 	cout << "\nMove disk from " << from << other;
     if (n > 1)
     {
-        hanoi(from, other, to, n - 1);
-        hanoi(from, to, other, 1);
-        hanoi(to, from, other, n - 1);
+	hanoi(from, other, to, n - 1);
+	hanoi(from, to, other, 1);
+	hanoi(to, from, other, n - 1);
     }
 }

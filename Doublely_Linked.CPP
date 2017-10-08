@@ -2,80 +2,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream.h>
-#include<conio.h>
+#include <conio.h>
 
 // A linked list node
-struct Node
+struct node
 {
     int data;
-    struct Node *next;
-    struct Node *prev;
+    struct node *next;
+    struct node *prev;
 };
 
-void push(Node **head_ref, int new_data)
+void push(node **head_ref, int new_data)
 {
-    Node *new_node = (Node *)malloc(sizeof(struct Node));
+    node *new_node = (node *)malloc(sizeof(struct node));
     new_node->data = new_data;
     new_node->next = (*head_ref);
     new_node->prev = NULL;
     if ((*head_ref) != NULL)
-	(*head_ref)->prev = new_node;
+        (*head_ref)->prev = new_node;
     (*head_ref) = new_node;
 }
 
-void printList(Node *node)
+void printList(node *node)
 {
     while (node != NULL)
     {
-	cout << node->data;
-	node = node->next;
+        cout << node->data;
+        node = node->next;
     }
 }
 
-void sort(Node *x)
+void sort(node *head)
 {
-    Node *temp = x;
-    Node *so = x;
-    Node *a = x;
-    int min, c;
-    min = temp->data;
-    while (temp != NULL)
+    node *temp;
+    node *temp1 = head;
+    node *temp2;
+    int x;
+   while (temp1->next != NULL)
     {
-	if (temp->data < min)
+	temp2 = head;
+	while (temp2->next != NULL)
 	{
-	    min = temp->data;
+	    temp = temp2->next;
+	    if (temp2->data > temp->data)
+	    {
+		x = temp->data;
+		temp->data = temp2->data;
+		temp2->data = x;
+	    }
+	    temp2 = temp2->next;
 	}
-	temp = temp->next;
-    }
-    while (so != NULL)
-    {
-	if (so->data == min)
-	{
-	    c = so->data;
-	    so->data = a->data;
-	    a->data = c;
-	}
-	so = so->next;
-    }
-    x = x->next;
-    if (x != NULL)
-    {
-	sort(x);
+	temp1 = temp1->next;
     }
 }
 
 int main()
 {
 
-    Node *head = NULL;
+    node *head = NULL;
     clrscr();
     push(&head, 7);
     push(&head, 1);
-    push(&head,8);
-    push(&head,9);
-    printList(head);
+    push(&head, 8);
+    push(&head, 9);
+   printList(head);
     sort(head);
-    printList(head);
+   printList(head);
     getch();
     return 0;
 }

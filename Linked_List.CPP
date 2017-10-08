@@ -1,8 +1,10 @@
 //Create | Display | Search
 #include <stdio.h>
-#include <iostream.h>
-#include <conio.h>
-#include <stdlib.h>
+#include <iostream>
+
+using namespace std;
+
+node *head = NULL;
 
 struct node
 {
@@ -19,8 +21,8 @@ void print(node* head)
     print(head->next);
     cout << head->data;
 }
-void search(node**headref,int data){
-    node* current=*headref;
+void search(node* head,int data){
+    node* current=head;
     while(current!=NULL){
 	if(current->data==data){
 	    cout<<"\nElement found\n";
@@ -32,22 +34,19 @@ void search(node**headref,int data){
     cout<<"Element not found";
 
 }
-void push(node **headref, char newdata)
+void push(node *head, char newdata)
 {
     node *newnode = (node *)malloc(sizeof(newdata));
     newnode->data = newdata;
-    newnode->next = *headref;
-    *headref = newnode;
+    newnode->next = head;
+    head = newnode;
 }
 void main()
 {
-    node *head = NULL;
-    clrscr();
-    push(&head, 4);
-    push(&head, 3);
-    push(&head, 2);
-    push(&head, 1);
+    push(head, 4);
+    push(head, 3);
+    push(head, 2);
+    push(head, 1);
     print(head);
-    search(&head,3);
-    getch();
+    search(head,3);
 }

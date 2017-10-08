@@ -32,7 +32,7 @@ void ins()
     else if (rear == max - 1 && front != 0)
     {
         rear = 0;
-        cin >> arr[rear++];
+        cin >> arr[rear];
     }
     else
     {

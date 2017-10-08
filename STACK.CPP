@@ -4,26 +4,14 @@
 #include <conio.h>
 #define max 5
 
-class Stack
-{
-    int top;
+int a[max], top=-1;
 
-  public:
-    int a[max];
-    Stack()
-    {
-        top = -1;
-    }
-    void push(int x);
-    int pop();
-};
-
-void Stack::push(int x)
+void push(int x)
 {
     a[++top] = x;
 }
 
-int Stack::pop()
+int pop()
 {
     int x = a[top--];
     return x;
@@ -31,9 +19,11 @@ int Stack::pop()
 
 void main()
 {
-    struct Stack s;
+
     clrscr();
-    s.push(10);
-    cout << s.pop();
+    push(10);
+    push(2);
+    push(3);
+    cout<<pop();
     getch();
 }
